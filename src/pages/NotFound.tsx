@@ -2,7 +2,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { DatabaseX } from "lucide-react";
+import { Database } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -18,7 +18,7 @@ const NotFound = () => {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center p-6 max-w-md">
         <div className="flex justify-center mb-4">
-          <DatabaseX className="h-16 w-16 text-muted-foreground" />
+          <Database className="h-16 w-16 text-muted-foreground" />
         </div>
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-muted-foreground mb-6">
