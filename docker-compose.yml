@@ -1,0 +1,20 @@
+
+version: '3.8'
+
+services:
+  memcached:
+    image: memcached:latest
+    container_name: memcached-server
+    ports:
+      - "11211:11211"
+
+  memcachedui:
+    build: .
+    container_name: memcached-ui
+    ports:
+      - "8080:80"
+    environment:
+      - MEMCACHED_HOST=memcached
+      - MEMCACHED_PORT=11211
+    depends_on:
+      - memcached

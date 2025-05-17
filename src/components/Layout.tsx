@@ -8,12 +8,9 @@ import {
   Home,
   Key,
   LayersIcon,
-  ListX,
   Menu,
   Package,
-  Server,
   Settings,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -89,12 +86,6 @@ export default function Layout({ children }: LayoutProps) {
             icon={<Package className="h-4 w-4" />} 
             title="Operations" 
             active={isActive("/operations")}
-          />
-          <NavItem 
-            href="/servers" 
-            icon={<Server className="h-4 w-4" />} 
-            title="Servers" 
-            active={isActive("/servers")}
           />
           <NavItem 
             href="/settings" 

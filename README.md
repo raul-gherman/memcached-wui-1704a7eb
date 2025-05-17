@@ -1,73 +1,85 @@
-# Welcome to your Lovable project
+
+# MemcachedUI
+
+A modern web interface for managing and monitoring Memcached servers.
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/9df58439-67f7-40b9-8129-fc09d427bf98
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Key management (view, edit, delete)
+- Tree view for nested keys
+- Statistics monitoring
+- Import/Export functionality
+- Server operations (flush cache)
+- Dark/light theme support
 
-**Use Lovable**
+## Development
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9df58439-67f7-40b9-8129-fc09d427bf98) and start prompting.
+### Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Local Development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to the project directory
+cd memcachedui
 
-# Step 3: Install the necessary dependencies.
+# Copy environment template and configure it
+cp .env.template .env
+
+# Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Using Docker
 
-**Use GitHub Codespaces**
+The easiest way to deploy MemcachedUI is using Docker and Docker Compose:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Clone the repository
+2. Configure environment settings:
+   ```sh
+   cp .env.template .env
+   # Edit .env with your Memcached server details
+   ```
+3. Build and start containers:
+   ```sh
+   docker-compose up -d
+   ```
+4. Access the UI at `http://localhost:8080`
 
-## What technologies are used for this project?
+### Manual Deployment
 
-This project is built with:
+1. Build the application:
+   ```sh
+   npm run build
+   ```
+
+2. Deploy the contents of the `dist` directory to your web server.
+
+3. Configure your web server (like Nginx) to serve the application and handle SPA routing.
+
+## Technology Stack
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- React Router
+- React Query
 
-## How can I deploy this project?
+## License
 
-Simply open [Lovable](https://lovable.dev/projects/9df58439-67f7-40b9-8129-fc09d427bf98) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+MIT

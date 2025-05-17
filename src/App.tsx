@@ -10,7 +10,6 @@ import Index from "./pages/Index";
 import Keys from "./pages/Keys";
 import Stats from "./pages/Stats";
 import Operations from "./pages/Operations";
-import Servers from "./pages/Servers";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
@@ -46,14 +45,6 @@ const App = () => (
               element={
                 <Layout>
                   <Operations />
-                </Layout>
-              } 
-            />
-            <Route 
-              path="/servers" 
-              element={
-                <Layout>
-                  <Servers />
                 </Layout>
               } 
             />
