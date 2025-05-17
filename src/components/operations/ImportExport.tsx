@@ -1,11 +1,11 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, Download, Upload, Loader2 } from "lucide-react";
+import { AlertCircle, Download, Upload, Loader2, FileUp } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { exportKeys, importKeys } from "@/services/memcachedService";
 
@@ -15,6 +15,7 @@ export function ImportExport() {
   const [jsonData, setJsonData] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const handleExport = async () => {
     setLoading(true);
@@ -83,6 +84,35 @@ export function ImportExport() {
     URL.revokeObjectURL(url);
   };
   
+  const handleFileSelect = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target?.result as string;
+      setJsonData(content);
+    };
+    reader.onerror = () => {
+      setError("Failed to read file");
+      toast({
+        variant: "destructive",
+        title: "File Error",
+        description: "Failed to read the selected file",
+      });
+    };
+    reader.readAsText(file);
+    
+    // Reset the input to allow selecting the same file again
+    e.target.value = "";
+  };
+  
   return (
     <Card>
       <CardHeader>
@@ -129,6 +159,23 @@ export function ImportExport() {
           
           <TabsContent value="import" className="space-y-4">
             <div className="mt-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Button variant="outline" onClick={handleFileSelect}>
+                  <FileUp className="mr-2 h-4 w-4" />
+                  Select JSON File
+                </Button>
+                <input 
+                  type="file" 
+                  ref={fileInputRef}
+                  className="hidden" 
+                  accept=".json,application/json" 
+                  onChange={handleFileChange}
+                />
+                <span className="text-sm text-muted-foreground">
+                  or paste JSON content below
+                </span>
+              </div>
+              
               {error && (
                 <Alert variant="destructive" className="mb-4">
                   <AlertCircle className="h-4 w-4" />
