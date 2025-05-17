@@ -22,23 +22,23 @@ import {
 import { detectDataType } from "@/services/memcachedService";
 
 interface KeyEditorProps {
-  key: MemcachedKey | null;
+  keyData: MemcachedKey | null;
   open: boolean;
   onClose: () => void;
   onSave: (key: MemcachedKey) => void;
 }
 
-export function KeyEditor({ key, open, onClose, onSave }: KeyEditorProps) {
-  const isNewKey = !key?.key;
+export function KeyEditor({ keyData, open, onClose, onSave }: KeyEditorProps) {
+  const isNewKey = !keyData?.key;
   
   const [formData, setFormData] = useState<MemcachedKey>({
-    key: key?.key || "",
-    value: key?.value || "",
-    size: key?.size || 0,
-    flags: key?.flags || 0,
-    expiry: key?.expiry || 0,
-    cas: key?.cas || "0",
-    dataType: key?.dataType || "string",
+    key: keyData?.key || "",
+    value: keyData?.value || "",
+    size: keyData?.size || 0,
+    flags: keyData?.flags || 0,
+    expiry: keyData?.expiry || 0,
+    cas: keyData?.cas || "0",
+    dataType: keyData?.dataType || "string",
   });
 
   const [expiryType, setExpiryType] = useState<"never" | "seconds" | "timestamp">(

@@ -161,7 +161,7 @@ export default function Keys() {
         open={editorOpen} 
         onClose={() => setEditorOpen(false)} 
         onSave={handleSaveKey} 
-        key={selectedKey}
+        keyData={selectedKey}
       />
 
       <KeyViewer 
@@ -184,7 +184,7 @@ export default function Keys() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirmDelete} variant="destructive">
+            <AlertDialogAction onClick={handleConfirmDelete}>
               Delete
             </AlertDialogAction>
           </AlertDialogFooter>

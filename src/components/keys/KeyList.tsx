@@ -151,7 +151,7 @@ export function KeyList({ keys, onEdit, onDelete, onView }: KeyListProps) {
                 <SelectValue placeholder="All types" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All types</SelectItem>
+                <SelectItem value="all">All types</SelectItem>
                 <SelectItem value="string">String</SelectItem>
                 <SelectItem value="number">Number</SelectItem>
                 <SelectItem value="json">JSON</SelectItem>
